@@ -1,0 +1,4 @@
+switch.wemo_switch:
+  name:
+  platform: wemo
+  unique_id: 221401K1100958
