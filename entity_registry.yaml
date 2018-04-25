@@ -2,3 +2,7 @@ switch.wemo_switch:
   name:
   platform: wemo
   unique_id: 221401K1100958
+switch.switch:
+  name:
+  platform: zwave
+  unique_id: 2-72057594076282880
