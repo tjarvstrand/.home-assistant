@@ -18,8 +18,27 @@ zwave:
   usb_path: /dev/serial/by-id/usb-0658_0200-if00
   network_key: "0x20, 0xC1, 0x18, 0xA1, 0x86, 0x20, 0xC3, 0x7B, 0xC8, 0x95, 0x8C, 0x47, 0xAF, 0x3C, 0x2E, 0x3C"
 
+switch:
+  platform: command_line
+  switches:
+    projector:
+      command_on: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 848397 32
+      command_off: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 815757 32; sleep 0.5; /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 815757 32
+      friendly_name: Projector
+
+
+
 shell_command:
-  turn_off_stereo: /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 1587640455 32
+  stereo_off: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 1587640455 32
+  stereo_on: /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 1587656775 32
+  stereo_source_cd: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 1587652695 32
+  stereo_source_projector: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 1587669015 32
+  stereo_volume_up: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 1587632295 32
+  stereo_volume_down: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 1587669015 32
+
+  projector_off: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 815757 32; sleep 0.5; /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 815757 32
+  projector_on: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 848397 32
+  projector_mute_toggle: /srv/home-assistant/bin/python /home/home-assistant/IRBlaster/ir-send.py /dev/serial/by-id/usb-SparkFun_SparkFun_Pro_Micro_HIDFG-if00 1 796887 32
 
 # Show links to resources in log and frontend
 introduction:
@@ -31,10 +50,10 @@ frontend:
 config:
 
 http:
-  # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-  # base_url: example.duckdns.org:8123
+  api_password: !secret http_password
+  ssl_certificate: /etc/letsencrypt/live/tjarvstrand.ddns.net/fullchain1.pem
+  ssl_key: /etc/letsencrypt/live/tjarvstrand.ddns.net/privkey1.pem
+  base_url: tjarvstrand.ddns.net:8123
 
 # Checks for available updates
 # Note: This component will send some information about your system to

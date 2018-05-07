@@ -6,3 +6,7 @@ switch.switch:
   name:
   platform: zwave
   unique_id: 2-72057594076282880
+switch.switch_2:
+  name:
+  platform: zwave
+  unique_id: 3-72057594093060096
